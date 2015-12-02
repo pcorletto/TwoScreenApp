@@ -13,7 +13,8 @@ public class SecondActivity extends ActionBarActivity {
 
     private TextView mSecondScreenTextView;
     private Button mSecondScreenButton;
-    private String mName, mNumber;
+    private String mName, mNumberString;
+    private float mNumber, mNumberSquared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,16 @@ public class SecondActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         mName = intent.getStringExtra(getString(R.string.key_name));
-        mNumber = intent.getStringExtra(getString(R.string.key_number));
+        mNumberString = intent.getStringExtra(getString(R.string.key_number));
+
+        mNumber = Float.parseFloat(mNumberString);
+
+        // Square the number
+
+        mNumberSquared = Square(mNumber);
 
         mSecondScreenTextView.setText("Hello "+ mName + ". Your favorite number is " +
-                 mNumber + ".");
+                 mNumber + ".\nThe square of your number is " + mNumberSquared);
                 
         mSecondScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +43,11 @@ public class SecondActivity extends ActionBarActivity {
                 finish();
             }
         });
+    }
+
+    public float Square(float number){
+        return number*number;
+
     }
 
 

@@ -14,7 +14,7 @@ public class MainActivity extends ActionBarActivity {
 
     private EditText mNameEditText, mNumberEditText;
     private Button mMainScreenButton;
-    private String mName;
+    private String mName, mNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 mName = mNameEditText.getText().toString();
+                mNumber = mNumberEditText.getText().toString();
+
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra(mName, getString(R.string.key_name));
+                intent.putExtra(getString(R.string.key_name), mName);
+                intent.putExtra(getString(R.string.key_number).toString(), mNumber);
                 startActivity(intent);
             }
         });
@@ -37,4 +40,10 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mNameEditText.setText("");
+        mNumberEditText.setText("");
+    }
 }

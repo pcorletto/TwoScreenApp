@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.twoscreenapp.R;
+import com.example.android.twoscreenapp.model.Squared;
 
 public class SecondActivity extends ActionBarActivity {
 
@@ -15,6 +16,7 @@ public class SecondActivity extends ActionBarActivity {
     private Button mSecondScreenButton;
     private String mName, mNumberString;
     private float mNumber, mNumberSquared;
+    private Squared squareNumber = new Squared();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class SecondActivity extends ActionBarActivity {
 
         // Square the number
 
-        mNumberSquared = Square(mNumber);
+        mNumberSquared = squareNumber.getSquare(mNumber);
 
         mSecondScreenTextView.setText("Hello "+ mName + ". Your favorite number is " +
                  mNumber + ".\nThe square of your number is " + mNumberSquared);
-                
+
         mSecondScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,11 +45,6 @@ public class SecondActivity extends ActionBarActivity {
                 finish();
             }
         });
-    }
-
-    public float Square(float number){
-        return number*number;
-
     }
 
 
